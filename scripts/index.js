@@ -57,48 +57,69 @@ video.addEventListener("ended", () => {
 
 // TEKS UCAPAN MENGETIK – aman untuk banyak kalimat
 function showBirthdayTyping() {
-  // Tambahkan ucapan sebanyak yang kamu mau
   const messages = [
-    "Selamat Ulang Tahun",
+    "Selamat Ulang Tahun 🎂",
     "Nurul Azizah",
-    "Adikku Termanis,Tercakep",
-    "Ter apalagi yah wkwk💖",
-    "Semoga hari-harimu selalu bahagia 🎉",
-    "Dan selalu dikelilingi",
-    "orang-orang baik ✨",
+    "Adikku yang baik hati💖",
+    "Suka menabung dan tidak sombong😂",
+    "Hari ini hari ulang tahunmu🥳",
+    "Bertambah satu tahun usiamu",
+    "Ku doakan bahagia selalu untukmu ",
+    "Tercapai segala cita-citamu",
+    "Semoga segala harapan segera terkabulkan",
+    "Dan segala kelelahan tergantikan dengan kebahagiaan",
+    "Semakin bertambahnya usia",
+    "Tambah berat juga beban dipundak",
+    "Semakin dikuatin lagi yaa💪",
+    "Semangat terus🔥",
   ];
 
   const container = document.createElement("div");
+  container.className = "birthday-text";
   container.style.position = "fixed";
   container.style.top = "30%";
-  container.style.width = "100%";
+  container.style.left = "50%";
+  container.style.transform = "translateX(-50%)";
+  container.style.width = "80%";
+  container.style.maxHeight = "60vh";
+  container.style.overflowY = "auto";
   container.style.textAlign = "center";
   container.style.color = "#fff";
-  container.style.fontSize = "32px";
   container.style.fontWeight = "bold";
+  container.style.lineHeight = "1.4";
   container.style.textShadow = "0 0 10px #ff69b4";
   container.style.zIndex = "9999";
+  container.style.fontSize = "clamp(20px, 4vw, 32px)";
+
   document.body.appendChild(container);
 
   let i = 0;
 
   function typeMessage() {
-    if (i >= messages.length) return; // berhenti setelah semua pesan
+    if (i >= messages.length) return;
 
     const p = document.createElement("p");
+    p.style.marginBottom = "14px";
     container.appendChild(p);
 
-    const message = String(messages[i]); // amankan ke string
+    const text = messages[i];
     let charIndex = 0;
 
     function typeLetter() {
-      if (charIndex < message.length) {
-        p.textContent += message[charIndex];
+      if (charIndex < text.length) {
+        p.textContent += text.charAt(charIndex);
         charIndex++;
-        setTimeout(typeLetter, 100); // delay tiap huruf
+
+        // AUTO SCROLL HALUS
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: "smooth"
+        });
+
+        setTimeout(typeLetter, 70);
       } else {
         i++;
-        setTimeout(typeMessage, 800); // jeda sebelum pesan berikutnya
+        setTimeout(typeMessage, 600);
       }
     }
 
