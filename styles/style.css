@@ -6,9 +6,11 @@
 
 body {
   background: radial-gradient(circle at top, #2c003e, #000);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto; /* PENTING agar teks bisa discroll */
   font-family: 'Segoe UI', sans-serif;
 }
+
 
 /* TEKS KLIK */
 .click-text {
@@ -119,6 +121,8 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  opacity: 0;                
+  transition: opacity 0.8s ease;
 }
 
 .video-intro video {
@@ -130,4 +134,17 @@ body {
 /* SEMBUNYI */
 .hidden {
   display: none;
+}
+
+/* MODE PORTRAIT KHUSUS HP + AUTO SCROLL */
+@media (max-width: 768px) and (orientation: portrait) {
+  .birthday-text {
+    top: 20% !important;
+    width: 92% !important;
+    max-height: 65vh !important;
+    font-size: 20px !important;
+    line-height: 1.5 !important;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+  }
 }
